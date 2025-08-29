@@ -1,0 +1,88 @@
+id: node
+title: Node.js application guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [node, javascript, typescript, backend, api, server]
+tech:
+  languages: [javascript, typescript]
+  frameworks: [express, fastify, koa]
+  libraries: [cors, helmet, express-rate-limit, mongoose, prisma]
+  runtimes: [node]
+  tools: [npm, yarn, pnpm, nodemon, ts-node-dev]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://nodejs.org/docs
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [nodejs, node-js, node.js]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*", "services/*"]
+  rules:
+    # Rule 1: Microservices architecture
+    - id: microservices
+      name: "Microservices Architecture"
+      description: "Place in services directory for microservices"
+      when:
+        tags: [node, backend, api]
+        workspace: true
+        filesAny: ["package.json"]
+        pathPattern: "services/**"
+      destinations:
+        - pattern: "services/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Single service application
+    - id: single-service
+      name: "Single Service Application"
+      description: "Place at root of single service app"
+      when:
+        tags: [node, backend, api]
+        filesAny: ["package.json", "server.js", "index.js", "app.js"]
+        filesAll: ["src/"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Monorepo packages - place in backend packages
+    - id: monorepo-backend
+      name: "Monorepo Backend Package"
+      description: "Place in packages/backend or similar backend package"
+      when:
+        tags: [node, backend, api]
+        workspace: true
+        filesAny: ["package.json"]
+        pathPattern: "packages/backend/**"
+      destinations:
+        - pattern: "packages/backend"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: API Gateway
+    - id: api-gateway
+      name: "API Gateway"
+      description: "Place in api-gateway service"
+      when:
+        tags: [node, backend, api]
+        filesAny: ["package.json"]
+        pathPattern: "**/api-gateway/**"
+      destinations:
+        - pattern: "**/api-gateway"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 5: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [node, backend, api]
+      destinations:
+        - pattern: "."
+          write: ".agents/frameworks/node/AGENTS.md"
+          mode: create-or-update

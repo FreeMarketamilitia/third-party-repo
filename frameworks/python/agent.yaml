@@ -1,0 +1,100 @@
+id: python
+title: Python application guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [python, django, flask, fastapi, backend, api]
+tech:
+  languages: [python]
+  frameworks: [django, flask, fastapi, tornado]
+  libraries: [sqlalchemy, django-orm, requests, aiohttp, pydantic]
+  tools: [pip, poetry, pipenv, venv, pytest]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://docs.python.org/3/
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [python-framework, python-web, python-backend]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*", "services/*"]
+  rules:
+    # Rule 1: Django project
+    - id: django-project
+      name: "Django Project"
+      description: "Place at root of Django project"
+      when:
+        tags: [python, django, backend]
+        filesAny: ["manage.py", "settings.py", "urls.py"]
+        filesAll: ["requirements.txt", "pyproject.toml"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Flask application
+    - id: flask-app
+      name: "Flask Application"
+      description: "Place at root of Flask app"
+      when:
+        tags: [python, flask, backend]
+        filesAny: ["app.py", "application.py", "wsgi.py"]
+        filesAll: ["requirements.txt", "pyproject.toml"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: FastAPI application
+    - id: fastapi-app
+      name: "FastAPI Application"
+      description: "Place at root of FastAPI app"
+      when:
+        tags: [python, fastapi, backend]
+        filesAny: ["main.py", "app.py"]
+        filesAll: ["requirements.txt", "pyproject.toml"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: Monorepo packages - place in backend packages
+    - id: monorepo-backend
+      name: "Monorepo Backend Package"
+      description: "Place in packages/backend or similar backend package"
+      when:
+        tags: [python, backend, api]
+        workspace: true
+        filesAny: ["pyproject.toml", "setup.py", "requirements.txt"]
+        pathPattern: "packages/backend/**"
+      destinations:
+        - pattern: "packages/backend"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 5: Microservices - place in services
+    - id: microservices
+      name: "Microservices Architecture"
+      description: "Place in services directory for microservices"
+      when:
+        tags: [python, backend, api]
+        workspace: true
+        filesAny: ["pyproject.toml", "requirements.txt"]
+        pathPattern: "services/**"
+      destinations:
+        - pattern: "services/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 6: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [python, backend, api]
+      destinations:
+        - pattern: "."
+          write: ".agents/frameworks/python/AGENTS.md"
+          mode: create-or-update

@@ -1,0 +1,70 @@
+id: vercel
+title: Vercel deployment guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [vercel, deployment, hosting, serverless, nextjs, frontend]
+tech:
+  platforms: [vercel]
+  tools: [vercel-cli, nextjs, nuxtjs, sveltekit]
+  languages: [javascript, typescript]
+  frameworks: [nextjs, react, vue, svelte]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://vercel.com/docs
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [vercel-deployment, vercel-hosting, vercel-platform]
+
+placement:
+  strategy: smart
+  appliesTo: ["."]
+  rules:
+    # Rule 1: Vercel project root
+    - id: vercel-project
+      name: "Vercel Project Root"
+      description: "Place at root of Vercel project"
+      when:
+        tags: [vercel, deployment]
+        filesAny: ["vercel.json", "package.json", "next.config.js", "nuxt.config.js"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Next.js project with Vercel
+    - id: nextjs-vercel
+      name: "Next.js with Vercel"
+      description: "Place in Next.js projects for Vercel deployment"
+      when:
+        tags: [vercel, deployment, nextjs]
+        filesAny: ["next.config.js", "next.config.mjs", "package.json"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Monorepo with Vercel
+    - id: monorepo-vercel
+      name: "Monorepo with Vercel"
+      description: "Place at root of monorepo with Vercel deployment"
+      when:
+        tags: [vercel, deployment]
+        workspace: true
+        filesAny: ["vercel.json", "package.json"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [vercel, deployment]
+      destinations:
+        - pattern: "."
+          write: ".agents/integrations/vercel/AGENTS.md"
+          mode: create-or-update

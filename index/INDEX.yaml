@@ -1,0 +1,97 @@
+version: 1
+generatedAt: 2025-08-28T22:38:00Z
+
+# Third-Party Agents Catalog - INDEX.yaml
+# This catalog contains community-contributed agents from various sources
+# Each agent has its own placement rules and metadata
+#
+# Usage Examples:
+# npx agent-cli get nextjs --repo third-party-org/third-party-agents
+# npx agent-cli get shadcn --repo third-party-org/third-party-agents --rule single-repo
+# npx agent-cli get python --repo third-party-org/third-party-agents --output ./docs
+
+agents:
+  # 🎨 Components
+  - id: shadcn
+    title: shadcn/ui component guidance (Third-Party)
+    path: components/shadcn/AGENTS.md
+    agentYaml: components/shadcn/agent.yaml
+    version: 1.0.0
+    tags: [shadcn, radix, react, nextjs, tailwind, components, ui, accessibility]
+    legend: 🎨 Third-party shadcn/ui components | 🏗️ React + TypeScript + Tailwind | 📦 npx shadcn@latest add [component] | 🎨 CSS variables + Tailwind | ♿ Radix UI primitives | 🔧 shadcn add button --yes
+
+  - id: magic
+    title: Magic UI component guidance (Third-Party)
+    path: components/magic/AGENTS.md
+    agentYaml: components/magic/agent.yaml
+    version: 1.0.0
+    tags: [magic, radix, react, nextjs, tailwind, components, ui, animations]
+    legend: 🎨 Third-party animated components | 🏗️ React + TypeScript + Tailwind + Framer Motion | 📦 npx shadcn@latest add [component] | 🎨 Modern animations + micro-interactions | ♿ Radix UI primitives | 🔧 shadcn add button --yes
+
+  # 🚀 Frameworks
+  - id: nextjs
+    title: Next.js application guidance (Third-Party)
+    path: frameworks/nextjs/AGENTS.md
+    agentYaml: frameworks/nextjs/agent.yaml
+    version: 1.0.0
+    tags: [nextjs, react, typescript, ssr, api-routes, app-router]
+    legend: 🚀 Third-party Next.js framework | 🏗️ React + TypeScript + Node.js | 📁 app/ directory (recommended) | 🗂️ pages/ directory (legacy) | 🔄 /api/* serverless functions | 📦 Vercel (recommended) | 🔧 npx create-next-app@latest
+
+  - id: node
+    title: Node.js application guidance (Third-Party)
+    path: frameworks/node/AGENTS.md
+    agentYaml: frameworks/node/agent.yaml
+    version: 1.0.0
+    tags: [node, javascript, typescript, backend, api, server]
+    legend: 🟢 Third-party Node.js runtime | 🏗️ JavaScript/TypeScript + Node.js | 📦 npm/yarn/pnpm | 🔧 npx, node scripts | 🌐 Express, Fastify, Koa | 📊 Built-in modules | 🔧 npm init
+
+  - id: python
+    title: Python application guidance (Third-Party)
+    path: frameworks/python/AGENTS.md
+    agentYaml: frameworks/python/agent.yaml
+    version: 1.0.0
+    tags: [python, django, flask, fastapi, backend, api]
+    legend: 🐍 Third-party Python frameworks | 🏗️ Python + Frameworks | 📦 pip, poetry, pipenv | 🔧 Django, Flask, FastAPI | 🗄️ SQLAlchemy, Django ORM | 📊 pandas, numpy | 🔧 python -m venv
+
+  # 🧪 Testing
+  - id: jest
+    title: Jest testing framework guidance (Third-Party)
+    path: testing/jest/AGENTS.md
+    agentYaml: testing/jest/agent.yaml
+    version: 1.0.0
+    tags: [jest, testing, javascript, typescript, unit-testing, integration-testing]
+    legend: 🃏 Third-party Jest testing | 🏗️ Node.js + JavaScript/TypeScript | 📁 *.test.js, *.spec.js, __tests__/* | 🔍 Built-in coverage with Istanbul | 🎭 Powerful mocking | 🔄 Watch mode | 📊 Multiple reporters | 🔧 npm test or npx jest
+
+  # 💻 Languages
+  - id: typescript
+    title: TypeScript language guidance (Third-Party)
+    path: languages/typescript/AGENTS.md
+    agentYaml: languages/typescript/agent.yaml
+    version: 1.0.0
+    tags: [typescript, javascript, types, compiler, tooling]
+    legend: 📘 Third-party TypeScript language | 🏗️ Superset of JavaScript | 📦 npm, yarn, pnpm | 🔧 tsc, ts-node | 📊 Type checking, IntelliSense | 🎯 Strict mode, noImplicitAny | 🔧 npx tsc --init
+
+  - id: python-lang
+    title: Python language guidance (Third-Party)
+    path: languages/python/AGENTS.md
+    agentYaml: languages/python/agent.yaml
+    version: 1.0.0
+    tags: [python, programming, scripting, data-science, backend]
+    legend: 🐍 Third-party Python language | 🏗️ Python + Multiple Frameworks | 📦 pip, poetry, pipenv | 🔧 python, pip, venv | 📊 pandas, numpy, scikit-learn | 🎯 Type hints, async/await | 🔧 python -m venv
+
+  # 🔗 Integrations
+  - id: github-actions
+    title: GitHub Actions CI/CD guidance (Third-Party)
+    path: integrations/github-actions/AGENTS.md
+    agentYaml: integrations/github-actions/agent.yaml
+    version: 1.0.0
+    tags: [github-actions, ci, cd, automation, workflows, deployment]
+    legend: ⚡ Third-party GitHub Actions CI/CD | 🏗️ YAML-based workflows | 📦 Marketplace actions | 🔄 Automated testing, building, deployment | 📊 Matrix builds, secrets | 🎯 Event triggers | 🔧 .github/workflows/
+
+  - id: vercel
+    title: Vercel deployment guidance (Third-Party)
+    path: integrations/vercel/AGENTS.md
+    agentYaml: integrations/vercel/agent.yaml
+    version: 1.0.0
+    tags: [vercel, deployment, hosting, serverless, nextjs, frontend]
+    legend: ▲ Third-party Vercel platform | 🏗️ Global CDN, serverless functions | 📦 Zero-config deployments | 🔄 Preview deployments | 🎯 Custom domains, SSL | 📊 Analytics, monitoring | 🔧 vercel --prod

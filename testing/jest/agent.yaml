@@ -1,0 +1,87 @@
+id: jest
+title: Jest testing framework guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [jest, testing, javascript, typescript, unit-testing, integration-testing]
+tech:
+  languages: [javascript, typescript]
+  frameworks: [jest, react, node]
+  tools: [jest-cli, ts-jest, @testing-library/react, @testing-library/jest-dom]
+  libraries: [jest, @types/jest, jest-environment-jsdom]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://jestjs.io/docs/getting-started
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [jest-testing, jest-framework, jest-test]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*"]
+  rules:
+    # Rule 1: Jest project root
+    - id: jest-project
+      name: "Jest Project Root"
+      description: "Place at root of project with Jest"
+      when:
+        tags: [jest, testing]
+        filesAny: ["jest.config.js", "jest.config.ts", "package.json"]
+        filesAll: ["__tests__/", "src/"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Monorepo packages with Jest
+    - id: monorepo-jest
+      name: "Monorepo Jest Package"
+      description: "Place in packages with Jest tests"
+      when:
+        tags: [jest, testing]
+        workspace: true
+        filesAny: ["jest.config.js", "jest.config.ts", "__tests__/"]
+        pathPattern: "packages/**"
+      destinations:
+        - pattern: "packages/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Apps with Jest
+    - id: jest-app
+      name: "Jest Application"
+      description: "Place in apps with Jest tests"
+      when:
+        tags: [jest, testing]
+        workspace: true
+        filesAny: ["jest.config.js", "jest.config.ts"]
+        pathPattern: "apps/**"
+      destinations:
+        - pattern: "apps/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: React projects with Jest
+    - id: react-jest
+      name: "React with Jest"
+      description: "Place in React projects with Jest"
+      when:
+        tags: [jest, testing, react]
+        filesAny: ["jest.config.js", "jest.config.ts"]
+        filesAll: ["src/", "package.json"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 5: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [jest, testing]
+      destinations:
+        - pattern: "."
+          write: ".agents/testing/jest/AGENTS.md"
+          mode: create-or-update

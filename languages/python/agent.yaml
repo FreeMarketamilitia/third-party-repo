@@ -1,0 +1,86 @@
+id: python-lang
+title: Python language guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [python, programming, scripting, data-science, backend]
+tech:
+  languages: [python]
+  tools: [pip, poetry, pipenv, venv, pytest, black, flake8]
+  libraries: [requests, numpy, pandas, matplotlib, scikit-learn]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://docs.python.org/3/
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [python-language, py, python3]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*"]
+  rules:
+    # Rule 1: Python project root
+    - id: python-project
+      name: "Python Project Root"
+      description: "Place at root of Python project"
+      when:
+        tags: [python, programming]
+        filesAny: ["requirements.txt", "pyproject.toml", "setup.py", "Pipfile"]
+        filesAll: ["src/", "main.py", "app.py"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Monorepo packages with Python
+    - id: monorepo-python
+      name: "Monorepo Python Package"
+      description: "Place in packages with Python"
+      when:
+        tags: [python, programming]
+        workspace: true
+        filesAny: ["pyproject.toml", "setup.py", "requirements.txt"]
+        pathPattern: "packages/**"
+      destinations:
+        - pattern: "packages/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Apps with Python
+    - id: python-app
+      name: "Python Application"
+      description: "Place in apps with Python"
+      when:
+        tags: [python, programming]
+        workspace: true
+        filesAny: ["pyproject.toml", "requirements.txt"]
+        pathPattern: "apps/**"
+      destinations:
+        - pattern: "apps/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: Data science projects
+    - id: data-science
+      name: "Data Science Project"
+      description: "Place in data science projects"
+      when:
+        tags: [python, data-science]
+        filesAny: ["requirements.txt", "pyproject.toml"]
+        filesAll: ["notebooks/", "data/"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 5: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [python, programming]
+      destinations:
+        - pattern: "."
+          write: ".agents/languages/python/AGENTS.md"
+          mode: create-or-update

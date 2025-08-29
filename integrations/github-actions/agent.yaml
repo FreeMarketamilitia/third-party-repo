@@ -1,0 +1,57 @@
+id: github-actions
+title: GitHub Actions CI/CD guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [github-actions, ci, cd, automation, workflows, deployment]
+tech:
+  tools: [github-actions, actions/checkout, actions/setup-node, actions/cache]
+  languages: [yaml]
+  platforms: [github]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://docs.github.com/en/actions
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [gha, github-workflows, ci-cd, github-ci]
+
+placement:
+  strategy: smart
+  appliesTo: ["."]
+  rules:
+    # Rule 1: Repository with GitHub Actions
+    - id: github-actions-repo
+      name: "GitHub Actions Repository"
+      description: "Place at root of repository with GitHub Actions"
+      when:
+        tags: [github-actions, ci, cd]
+        filesAny: [".github/workflows/*.yml", ".github/workflows/*.yaml"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Monorepo with GitHub Actions
+    - id: monorepo-github-actions
+      name: "Monorepo with GitHub Actions"
+      description: "Place at root of monorepo with GitHub Actions"
+      when:
+        tags: [github-actions, ci, cd]
+        workspace: true
+        filesAny: [".github/workflows/*.yml", ".github/workflows/*.yaml"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [github-actions, ci, cd]
+      destinations:
+        - pattern: "."
+          write: ".agents/integrations/github-actions/AGENTS.md"
+          mode: create-or-update

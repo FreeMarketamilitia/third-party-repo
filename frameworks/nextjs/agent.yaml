@@ -1,0 +1,69 @@
+id: nextjs
+title: Next.js application guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [nextjs, react, typescript, ssr, api-routes, app-router]
+tech:
+  languages: [typescript, javascript]
+  frameworks: [nextjs, react]
+  runtimes: [node]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://nextjs.org/docs
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [next, next-js, next.js]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*"]
+  rules:
+    # Rule 1: Monorepo with workspaces - place in each app root
+    - id: monorepo-workspaces
+      name: "Monorepo Workspace Apps"
+      description: "Place at root of each workspace app"
+      when:
+        tags: [nextjs]
+        workspace: true
+        filesAny: ["package.json"]
+      destinations:
+        - pattern: "apps/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Single Next.js app - place at project root
+    - id: single-app
+      name: "Single Next.js App"
+      description: "Place at project root for single app"
+      when:
+        tags: [nextjs]
+        filesAny: ["package.json", "next.config.js", "next.config.mjs"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Next.js in subfolder (detect by next.config.*)
+    - id: subfolder-app
+      name: "Subfolder Next.js App"
+      description: "Place in subfolder containing next.config.*"
+      when:
+        tags: [nextjs]
+        filesAny: ["next.config.js", "next.config.mjs", "next.config.ts"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [nextjs]
+      destinations:
+        - pattern: "."
+          write: ".agents/frameworks/nextjs/AGENTS.md"
+          mode: create-or-update

@@ -1,0 +1,73 @@
+id: typescript
+title: TypeScript language guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [typescript, javascript, types, compiler, tooling]
+tech:
+  languages: [typescript, javascript]
+  tools: [tsc, ts-node, ts-node-dev, typescript-eslint]
+  libraries: [typescript, @types/node, tsconfig-paths]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://www.typescriptlang.org/docs/
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [ts, type-script, typescript-lang]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*"]
+  rules:
+    # Rule 1: TypeScript project root
+    - id: typescript-project
+      name: "TypeScript Project Root"
+      description: "Place at root of TypeScript project"
+      when:
+        tags: [typescript, javascript]
+        filesAny: ["tsconfig.json", "package.json"]
+        filesAll: ["src/"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Monorepo packages with TypeScript
+    - id: monorepo-typescript
+      name: "Monorepo TypeScript Package"
+      description: "Place in packages with TypeScript"
+      when:
+        tags: [typescript, javascript]
+        workspace: true
+        filesAny: ["tsconfig.json", "package.json"]
+        pathPattern: "packages/**"
+      destinations:
+        - pattern: "packages/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: Apps with TypeScript
+    - id: typescript-app
+      name: "TypeScript Application"
+      description: "Place in apps with TypeScript"
+      when:
+        tags: [typescript, javascript]
+        workspace: true
+        filesAny: ["tsconfig.json", "package.json"]
+        pathPattern: "apps/**"
+      destinations:
+        - pattern: "apps/*"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [typescript, javascript]
+      destinations:
+        - pattern: "."
+          write: ".agents/languages/typescript/AGENTS.md"
+          mode: create-or-update

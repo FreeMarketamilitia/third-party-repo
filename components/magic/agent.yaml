@@ -1,0 +1,72 @@
+id: magic
+title: Magic UI component guidance (Third Party)
+version: 1.0.0
+path: AGENTS.md
+tags: [magic, radix, react, nextjs, tailwind, components, ui, animations]
+tech:
+  languages: [typescript, javascript]
+  frameworks: [react, nextjs]
+  libraries: [tailwindcss, radix-ui, framer-motion, lucide-react]
+  tools: [magic-cli]
+creators:
+  - name: Third Party Contributor
+    org: ExampleOrg
+license: MIT
+source: https://magicui.design/docs
+checksum: sha256:placeholder-checksum-update-with-actual
+deprecated: false
+aliases: [magic-ui, magicui, magic-components]
+
+placement:
+  strategy: smart
+  appliesTo: ["apps/*", ".", "packages/*", "components/*"]
+  rules:
+    # Rule 1: Component library root
+    - id: component-library
+      name: "Component Library Root"
+      description: "Place at root of component library"
+      when:
+        tags: [magic, components]
+        filesAny: ["components.json", "tailwind.config.js", "tailwind.config.ts"]
+        filesAll: ["components/ui/"]
+      destinations:
+        - pattern: "."
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 2: Monorepo packages - place in UI package
+    - id: monorepo-ui-package
+      name: "Monorepo UI Package"
+      description: "Place in packages/ui or similar UI package"
+      when:
+        tags: [magic, components]
+        workspace: true
+        filesAny: ["package.json"]
+        pathPattern: "packages/ui/**"
+      destinations:
+        - pattern: "packages/ui"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 3: App with components - place in components directory
+    - id: app-components
+      name: "App Components Directory"
+      description: "Place in app's components directory"
+      when:
+        tags: [magic, components]
+        filesAny: ["components/ui/button.tsx", "components/ui/input.tsx"]
+      destinations:
+        - pattern: "components"
+          write: "AGENTS.md"
+          mode: create-or-update
+
+    # Rule 4: Safe fallback - use .agents directory
+    - id: safe-fallback
+      name: "Safe Fallback"
+      description: "Place in .agents directory as safe fallback"
+      when:
+        tags: [magic, components]
+      destinations:
+        - pattern: "."
+          write: ".agents/components/magic/AGENTS.md"
+          mode: create-or-update

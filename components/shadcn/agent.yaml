@@ -1,7 +1,7 @@
 id: shadcn
-title: shadcn/ui component guidance (Third Party)
+title: shadcn/ui component guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: components/shadcn/AGENTS.md
 tags: [shadcn, radix, react, nextjs, tailwind, components, ui, accessibility]
 tech:
   languages: [typescript, javascript]

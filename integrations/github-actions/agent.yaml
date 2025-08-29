@@ -1,7 +1,7 @@
 id: github-actions
-title: GitHub Actions CI/CD guidance (Third Party)
+title: GitHub Actions CI/CD guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: integrations/github-actions/AGENTS.md
 tags: [github-actions, ci, cd, automation, workflows, deployment]
 tech:
   tools: [github-actions, actions/checkout, actions/setup-node, actions/cache]

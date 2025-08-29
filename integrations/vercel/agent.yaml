@@ -1,7 +1,7 @@
 id: vercel
-title: Vercel deployment guidance (Third Party)
+title: Vercel deployment guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: integrations/vercel/AGENTS.md
 tags: [vercel, deployment, hosting, serverless, nextjs, frontend]
 tech:
   platforms: [vercel]

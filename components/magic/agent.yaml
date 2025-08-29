@@ -1,7 +1,7 @@
 id: magic
-title: Magic UI component guidance (Third Party)
+title: Magic UI component guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: components/magic/AGENTS.md
 tags: [magic, radix, react, nextjs, tailwind, components, ui, animations]
 tech:
   languages: [typescript, javascript]

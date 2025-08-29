@@ -1,7 +1,7 @@
 id: jest
-title: Jest testing framework guidance (Third Party)
+title: Jest testing framework guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: testing/jest/AGENTS.md
 tags: [jest, testing, javascript, typescript, unit-testing, integration-testing]
 tech:
   languages: [javascript, typescript]

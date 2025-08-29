@@ -1,7 +1,7 @@
 id: node
-title: Node.js application guidance (Third Party)
+title: Node.js application guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: frameworks/node/AGENTS.md
 tags: [node, javascript, typescript, backend, api, server]
 tech:
   languages: [javascript, typescript]

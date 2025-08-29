@@ -1,7 +1,7 @@
 id: python-lang
-title: Python language guidance (Third Party)
+title: Python language guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: languages/python/AGENTS.md
 tags: [python, programming, scripting, data-science, backend]
 tech:
   languages: [python]

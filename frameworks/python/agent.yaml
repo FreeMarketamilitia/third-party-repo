@@ -1,7 +1,7 @@
 id: python
-title: Python application guidance (Third Party)
+title: Python application guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: frameworks/python/AGENTS.md
 tags: [python, django, flask, fastapi, backend, api]
 tech:
   languages: [python]

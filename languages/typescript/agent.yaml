@@ -1,7 +1,7 @@
 id: typescript
-title: TypeScript language guidance (Third Party)
+title: TypeScript language guidance (Third-Party)
 version: 1.0.0
-path: AGENTS.md
+path: languages/typescript/AGENTS.md
 tags: [typescript, javascript, types, compiler, tooling]
 tech:
   languages: [typescript, javascript]
